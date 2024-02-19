@@ -2,7 +2,7 @@
 
 This repo contains the Hyperdiv documentation app, which is written in Hyperdiv.
 
-![hyperdiv-docs](https://github.com/hyperdiv/hyperdiv-docs/assets/5980501/6184856b-fb25-40d0-a3ae-08281fd01ca9)
+![Docs Gif](https://github.com/hyperdiv/hyperdiv-docs/assets/5980501/34a9b312-ae0c-4af2-9889-42b52db63439)
 
 # Opening the Documentation App
 
