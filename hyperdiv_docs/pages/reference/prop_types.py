@@ -2,12 +2,12 @@ import hyperdiv as hd
 from ...router import router
 from ...code_examples import docs_markdown
 from ...page import page
-from ...extractor.main import extract
+from ...docs_metadata import get_docs_metadata
 
 
 @router.route("/reference/prop-types")
 def prop_types():
-    data = extract()
+    data = get_docs_metadata()
 
     top_level_types = []
     concrete_types = []
@@ -97,7 +97,7 @@ def prop_type(prop_type_name):
             )
         return
 
-    data = extract()
+    data = get_docs_metadata()
     if prop_type_name not in data["prop_types"]:
         router.render_not_found()
         return
