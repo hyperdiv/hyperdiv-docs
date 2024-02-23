@@ -132,10 +132,10 @@ def component_props():
 
             ```py
             slider = hd.slider()
-            text_input = hd.text_input(value=slider.value)
+            hd.text_input(value=slider.value)
             reset_button = hd.button("Reset")
             if reset_button.clicked:
-                text_input.reset_prop("value")
+                slider.reset_prop("value")
             ```
 
             This design strikes a balance between being able to build
