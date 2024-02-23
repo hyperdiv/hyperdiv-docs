@@ -15,10 +15,10 @@ def env_variables():
             Hyperdiv's behavior can be controlled with the following
             environment variables.
 
-            With the exception of `HD_PORT`, these environment
-            variables are all boolean variables and take the values
-            `"1"` or `"true"`, or `"0"` or `"false"`. `"0"` or
-            `"false"` is equivalent to leaving the environment
+            With the exception of `HD_HOST` and `HD_PORT`, these
+            environment variables are all boolean variables and take
+            the values `"1"` or `"true"`, or `"0"` or `"false"`. `"0"`
+            or `"false"` is equivalent to leaving the environment
             variable unset.
 
             """
