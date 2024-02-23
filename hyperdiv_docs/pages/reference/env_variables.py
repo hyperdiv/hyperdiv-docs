@@ -29,6 +29,13 @@ def env_variables():
         docs_markdown(
             """
 
+            ### `HD_HOST`
+
+            This environment variable allows setting the host that a
+            Hyperdiv app runs on. The value should be a string
+            representing a valid IP address or hostname, e.g.
+            `"0.0.0.0"` (default value=`"localhost"`).
+
             ### `HD_PORT`
 
             This environment variable allows setting the port that a
