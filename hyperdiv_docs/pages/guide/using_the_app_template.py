@@ -71,7 +71,7 @@ def using_the_app_template():
                 with template.body:
                     router.run()
 
-            hd.run(app)
+            hd.run(main)
             ```
             """
         )
