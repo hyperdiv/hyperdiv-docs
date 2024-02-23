@@ -3,7 +3,7 @@ from ...router import router
 from ...code_examples import docs_markdown
 from ...utils import render_value
 from ...page import page
-from ...extractor.main import extract
+from ...docs_metadata import get_docs_metadata
 
 
 def render_methods(methods):
@@ -79,7 +79,7 @@ def render_slots(slots):
 
 @router.route("/reference/components/{component_name}")
 def reference_component(component_name):
-    data = extract()
+    data = get_docs_metadata()
     component = data["components"].get(component_name)
     if not component:
         router.render_not_found()
