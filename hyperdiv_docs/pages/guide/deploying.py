@@ -28,7 +28,7 @@ def deploying():
             Suppose you deploy a tool on PyPI whose code bundle
             structure looks like:
 
-            ```sh
+            ```
             my_tool/
                 my_hyperdiv_app/
                     start.py
@@ -133,7 +133,7 @@ def deploying():
             Here's a basic Nginx config that sets up the Hyperdiv app
             on `my-app.foo.com`:
 
-            ```sh
+            ```nginx
             server {
                 server_name my-app.foo.com;
                 listen 80;
@@ -183,7 +183,7 @@ def deploying():
             balancer, forwarding a new user connection to one of the
             processes:
 
-            ```sh
+            ```nginx
             upstream my-hyperdiv-app {
                 server 127.0.0.1:9000 max_fails=0;
                 server 127.0.0.1:9001 max_fails=0;
