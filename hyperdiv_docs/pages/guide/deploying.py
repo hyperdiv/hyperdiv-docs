@@ -1,7 +1,6 @@
 import hyperdiv as hd
 from ...router import router
 from ...page import page
-from ...code_examples import code_example, docs_markdown
 
 
 @router.route("/guide/deploying")
