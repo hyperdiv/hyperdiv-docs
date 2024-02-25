@@ -14,6 +14,7 @@ from .pages.guide.tasks import tasks
 from .pages.guide.pages_and_navigation import pages_and_navigation
 from .pages.guide.using_the_app_template import using_the_app_template
 from .pages.guide.static_assets import static_assets
+from .pages.guide.deploying import deploying
 
 from .pages.reference.components import components
 from .pages.reference.env_variables import env_variables
@@ -41,6 +42,7 @@ menu = {
         "Pages & Navigation": {"href": pages_and_navigation.path},
         "Using The App Template": {"href": using_the_app_template.path},
         "Static Assets": {"href": static_assets.path},
+        "Deploying Hyperdiv": {"href": deploying.path},
     },
     "Reference": {
         "Hyperdiv API": {"href": components.path},
