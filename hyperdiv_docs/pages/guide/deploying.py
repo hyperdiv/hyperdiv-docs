@@ -73,6 +73,20 @@ def deploying():
             """
         )
 
+        with hd.alert(opened=True):
+            hd.markdown(
+                """
+
+                Note that on Windows, this strategy using `os.execl`
+                may not work as expected. See
+                https://bugs.python.org/issue9148. Instead, you may
+                have to use
+                [Popen](https://docs.python.org/3/library/subprocess.html)
+                and maintain a subprocess.
+
+                """
+            )
+
         p.heading("## Deploying on the web or local network")
 
         hd.markdown(
