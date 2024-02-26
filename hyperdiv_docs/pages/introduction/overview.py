@@ -23,8 +23,6 @@ def overview():
         hd.markdown(
             """
 
-            Thank you for trying out Hyperdiv!
-
             Hyperdiv is a Python framework that aims to minimize tool
             complexity and the amount of code you have to type when
             building a reactive browser UI app.
