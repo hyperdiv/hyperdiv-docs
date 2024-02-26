@@ -1,3 +1,4 @@
+from importlib.metadata import version
 import hyperdiv as hd
 from .router import router
 from .menu import menu
@@ -5,9 +6,15 @@ from .app_template_demo import main as demo_main
 
 
 def render_title(slot=None):
-    with hd.hbox(gap=0.5, font_size=1, slot=slot):
+    with hd.hbox(gap=0.5, font_size=1, align="center", slot=slot):
         hd.text("Hyperdiv", font_weight="bold")
         hd.text("Docs")
+        hd.badge(
+            f'v{version("hyperdiv")}',
+            background_color="neutral-200",
+            font_color="neutral-700",
+            font_size=0.7,
+        )
 
 
 def main():
