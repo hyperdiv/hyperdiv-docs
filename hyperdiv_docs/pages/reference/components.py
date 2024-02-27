@@ -176,6 +176,8 @@ ui_components = {
         "split_panel",
         "tab_group",
         "tab",
+        "tree",
+        "tree_item",
         "carousel",
         "carousel_item",
     ],
