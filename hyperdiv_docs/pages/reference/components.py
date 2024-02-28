@@ -205,6 +205,7 @@ ui_components = {
     ],
     "Media": [
         "audio",
+        "video",
         "media_source",
         "image",
         "image_comparer",
