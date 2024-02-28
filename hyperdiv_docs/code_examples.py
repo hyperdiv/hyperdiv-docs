@@ -53,7 +53,7 @@ def code_example(code, code_to_execute=None):
     if code_to_execute is None:
         code_to_execute = code
     with hd.hbox(wrap="wrap", border="1px solid neutral-50", border_radius="large"):
-        with hd.box(horizontal_scroll=True, grow=1, basis=0, min_width=18):
+        with hd.box(horizontal_scroll=False, grow=1, basis=0, min_width=18):
             hd.code(code, height="100%")
         with hd.box(grow=1, basis=0, min_width=18):
             with hd.box(padding=1, gap=1):
