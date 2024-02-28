@@ -203,7 +203,15 @@ ui_components = {
         "tag",
         "tooltip",
     ],
-    "Media": ["image", "image_comparer", "avatar", "icon", "icon_button"],
+    "Media": [
+        "audio",
+        "media_source",
+        "image",
+        "image_comparer",
+        "avatar",
+        "icon",
+        "icon_button",
+    ],
     "Forms and Input": [
         "form",
         "button",
