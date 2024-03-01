@@ -16,8 +16,13 @@ hyperdiv docs
 After cloning the Hyperdiv repo and installing its dependencies, you can simply clone this repo and run its `start.py` script within Hyperdiv's Poetry virtualenv:
 ```sh
 cd hyperdiv
-# Install dependencies
+# Install Python dependencies
 poetry install
+# Install frontend dependencies
+cd frontend
+npm install
+npm run build
+cd ..
 # Enter the virtualenv
 poetry shell
 # Run the docs app in the virtualenv
