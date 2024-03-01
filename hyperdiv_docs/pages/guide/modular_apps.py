@@ -7,7 +7,7 @@ from ...code_examples import code_example, docs_markdown
 @router.route("/guide/modular-apps")
 def modular_apps():
     with page() as p:
-        p.title("# Buiding Modular Apps")
+        p.title("# Building Modular Apps")
 
         docs_markdown(
             """
