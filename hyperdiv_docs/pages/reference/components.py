@@ -193,7 +193,7 @@ ui_components = {
         "cartesian_chart",
         "chart",
     ],
-    "Overlays": ["drawer", "dialog", "dropdown"],
+    "Overlays": ["drawer", "dialog", "dropdown", "popup"],
     "User Feedback": [
         "progress_bar",
         "progress_ring",
