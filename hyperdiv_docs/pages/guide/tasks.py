@@ -137,7 +137,7 @@ def tasks():
             """
 
             The previous example shows how to run a one-time task in
-            repose to an event, in this case `clicked`.
+            response to an event, in this case `clicked`.
 
             Another core use of task is for slow reads. For example,
             running a heavy database query:
