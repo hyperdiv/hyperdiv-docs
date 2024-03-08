@@ -52,6 +52,8 @@ def matplotlib_charts():
 
                 # Render the image bytes in the UI:
                 hd.image(get_chart_image(fig), width=20)
+
+            hd.run(main)
             ```
 
             Note that `matplotlib.use("Agg")` is important. It tells
@@ -60,73 +62,6 @@ def matplotlib_charts():
             chart to Hyperdiv will fail.
 
             More on this [here](https://matplotlib.org/stable/users/explain/figure/backends.html#selecting-a-backend).
-
-            """
-        )
-
-        p.heading("## Asynchronous Chart Creation with `task`")
-
-        docs_markdown(
-            """
-
-            In the example above, The chart is re-created on every run
-            of the app function. We can use a @component(task) to
-            create the chart only once and cache its result:
-
-            ```py-nodemo
-            def get_chart():
-                fig, ax = plt.subplots()
-                ax.plot([1, 2, 3, 4], [10, 11, 12, 13])
-
-                return get_chart_image(fig)
-
-            def main():
-                task = hd.task()
-                task.run(get_chart)
-                if task.result:
-                    hd.image(task.result, width=20)
-            ```
-
-            In this example, the function `get_chart` is called only
-            once and the image bytes are cached in `task.result`.
-
-            """
-        )
-
-        p.heading("## Dynamically Updating Charts")
-
-        docs_markdown(
-            """
-
-            We can also re-create a chart on demand, with new data.
-
-            ```py-nodemo
-            def get_chart(data):
-                fig, ax = plt.subplots()
-                ax.plot(*data)
-
-                return get_chart_image(fig)
-
-            def main():
-                state = hd.state(
-                    chart_data=([1, 2, 3, 4], [10, 11, 12, 13])
-                )
-
-                task = hd.task()
-                task.run(get_chart, state.chart_data)
-                if task.result:
-                    hd.image(task.result, width=20)
-
-                if hd.button("Update Chart").clicked:
-                    state.chart_data = ([1, 2, 3, 4], [5, 20, 8, 10])
-                    task.clear()
-            ```
-
-            In this example, we store the chart's line data in
-            @component(state). When the `Update Chart` button is
-            clicked, we update the chart data and clear the task. The
-            task will then re-run with the new chart data, and an
-            updated chart will be rendered.
 
             """
         )
@@ -144,35 +79,115 @@ def matplotlib_charts():
             Hyperdiv's theme mode.
 
             ```py-nodemo
-            def get_chart(data, is_dark):
-                if is_dark:
-                    with plt.style.context("dark_background"):
-                        fig, ax = plt.subplots()
-                        ax.plot(*data)
-                else:
-                    fig, ax = plt.subplots()
-                    ax.plot(*data)
-
-                return get_chart_image(fig)
-
             def main():
                 theme = hd.theme()
-                task = hd.task()
-                task.run(
-                    get_chart,
-                    ([1, 2, 3, 4], [5, 20, 8, 10]),
-                    # Pass the current theme mode to the task:
-                    theme.is_dark
-                )
 
-                if task.result:
-                    hd.image(task.result, width=20)
+                line_data = ([1, 2, 3, 4], [10, 11, 12, 13])
 
-                # When the Hyperdiv theme changes, re-render the chart
-                # in the new theme mode:
-                if theme.changed:
-                    task.clear()
+                if theme.is_dark:
+                    # Render the matplotlib chart in dark mode:
+                    with plt.style.context("dark_background"):
+                        fig, ax = plt.subplots()
+                        ax.plot(*line_data)
+                else:
+                    # Render it in light mode:
+                    fig, ax = plt.subplots()
+                    ax.plot(*line_data)
+
+                # Render the image bytes in the UI:
+                hd.image(get_chart_image(fig), width=20)
             ```
 
+            """
+        )
+
+        p.heading("## Caching Chart Components with `@cached`")
+
+        docs_markdown(
+            """
+
+            Using the pattern above, the chart will be re-created on
+            every unrelated run of the app function. We can use the
+            @component(cached) decorator to avoid re-creating the
+            chart on every run.
+
+            ```py-nodemo
+            @hd.cached
+            def chart():
+                theme = hd.theme()
+
+                line_data = ([1, 2, 3, 4], [10, 11, 12, 13])
+
+                if theme.is_dark:
+                    with plt.style.context("dark_background"):
+                        fig, ax = plt.subplots()
+                        ax.plot(*line_data)
+                else:
+                    fig, ax = plt.subplots()
+                    ax.plot(*line_data)
+
+                hd.image(get_chart_image(fig), width=20)
+
+            def main():
+                chart()
+
+                state = hd.state(count=0)
+                if hd.button("Click Me").clicked:
+                    state.count += 1
+                hd.text(state.count)
+            ```
+
+            In this example, when the app first loads, `chart()` is
+            called and its resulting virtual DOM is cached.
+
+            For demonstration, there's an unrelated click counter on
+            the page. When we click the `Click Me` button, the app
+            re-runs but the call to `chart()` does not re-run the
+            `chart` function, and instead uses its cached virtual DOM.
+
+            Also, when the theme mode is switched between light and
+            dark, the `chart` function's dependency on theme mode will
+            be invalidated and the function will re-run, rendering the
+            chart in the new theme mode.
+
+            """
+        )
+
+        p.heading("## Dynamically Updating Charts")
+
+        docs_markdown(
+            """
+
+            We can re-create the chart on demand, with new data:
+
+            ```py-nodemo
+            @hd.cached
+            def chart(state):
+                theme = hd.theme()
+
+                if theme.is_dark:
+                    with plt.style.context("dark_background"):
+                        fig, ax = plt.subplots()
+                        ax.plot(*state.line_data)
+                else:
+                    fig, ax = plt.subplots()
+                    ax.plot(*state.line_data)
+
+                hd.image(get_chart_image(fig), width=20)
+
+            def main():
+                state = hd.state(
+                    line_data=([1, 2, 3, 4], [10, 11, 12, 13])
+                )
+
+                chart(state)
+
+                if hd.button("Update Chart").clicked:
+                    state.line_data = ([1, 2, 3, 4], [5, 20, 8, 10])
+            ```
+
+            In this example, we store the chart's line data in
+            @component(state). When the `Update Chart` button is
+            clicked, an updated chart will be rendered.
             """
         )
