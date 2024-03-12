@@ -48,7 +48,7 @@ def matplotlib_charts():
             def main():
                 # Create a chart:
                 fig, ax = plt.subplots()
-                ax.plot([1, 2, 3, 4], [10, 11, 12, 13])
+                ax.plot((1, 2, 3, 4), (10, 11, 12, 13))
 
                 # Render the image bytes in the UI:
                 hd.image(get_chart_image(fig), width=20)
@@ -82,7 +82,7 @@ def matplotlib_charts():
             def main():
                 theme = hd.theme()
 
-                line_data = ([1, 2, 3, 4], [10, 11, 12, 13])
+                line_data = ((1, 2, 3, 4), (10, 11, 12, 13))
 
                 if theme.is_dark:
                     # Render the matplotlib chart in dark mode:
@@ -116,7 +116,7 @@ def matplotlib_charts():
             def chart():
                 theme = hd.theme()
 
-                line_data = ([1, 2, 3, 4], [10, 11, 12, 13])
+                line_data = ((1, 2, 3, 4), (10, 11, 12, 13))
 
                 if theme.is_dark:
                     with plt.style.context("dark_background"):
@@ -162,8 +162,11 @@ def matplotlib_charts():
 
             ```py-nodemo
             @hd.cached
-            def chart(state):
+            def chart():
                 theme = hd.theme()
+                state = hd.state(
+                    line_data=((1, 2, 3, 4), (10, 11, 12, 13))
+                )
 
                 if theme.is_dark:
                     with plt.style.context("dark_background"):
@@ -175,15 +178,8 @@ def matplotlib_charts():
 
                 hd.image(get_chart_image(fig), width=20)
 
-            def main():
-                state = hd.state(
-                    line_data=([1, 2, 3, 4], [10, 11, 12, 13])
-                )
-
-                chart(state)
-
                 if hd.button("Update Chart").clicked:
-                    state.line_data = ([1, 2, 3, 4], [5, 20, 8, 10])
+                    state.line_data = ((1, 2, 3, 4), (5, 20, 8, 10))
             ```
 
             In this example, we store the chart's line data in
