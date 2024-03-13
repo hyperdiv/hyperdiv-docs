@@ -75,7 +75,7 @@ def pages_and_navigation():
 
         hd.markdown(
             """
-            Hyperdiv comes with a basic router, built on top of
+            Hyperdiv comes with a basic [`router`](/reference/components/router), built on top of
             [`location`](/reference/components/location), that makes
             it easy to build apps with multiple pages. When using
             Router, you write one function for each page, decorating
