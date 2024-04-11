@@ -23,6 +23,7 @@ from .pages.reference.design_tokens import design_tokens
 from .pages.reference.prop_types import prop_types
 from .pages.reference.icons import icons
 from .pages.reference.cli import cli
+from .pages.reference.plugins import plugins
 
 menu = {
     "Introduction": {
@@ -51,6 +52,7 @@ menu = {
         "Design Tokens": {"href": design_tokens.path},
         "Prop Types": {"href": prop_types.path},
         "Icons": {"href": icons.path},
+        "Plugins": {"href": plugins.path},
         "Environment Variables": {"href": env_variables.path},
         "The Hyperdiv CLI": {"href": cli.path},
     },

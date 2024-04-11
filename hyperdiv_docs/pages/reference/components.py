@@ -156,6 +156,7 @@ non_ui_components = {
         "clipboard",
         "local_storage",
     ],
+    "Plugins": ["Plugin"],
 }
 
 ui_components = {
