@@ -166,6 +166,38 @@ def plugins():
             """
         )
 
+        p.heading("### Nonstandard File Extensions")
+
+        docs_markdown(
+            """
+
+            When loading a local or remote asset file, Hyperdiv infers
+            its type from its extension. Hyperdiv recognizes the
+            extensions `.css` for CSS files and `.js` for Javascript
+            files.
+
+            If a file does not have one of these extensions, Hyperdiv
+            will raise an error.
+
+            If your plugin contains Javascript or CSS files with a
+            different extension, you can use `hd.Plugin.css_link` and
+            `hd.Plugin.js_link` to tell Hyperdiv whether a file is a
+            CSS file or a Javascript file:
+
+            ```py-nodemo
+            class my_plugin(hd.Plugin):
+                # ...
+                _assets = [
+                    # A CSS asset
+                    hd.Plugin.css_link("https://foo.com/bar.style")
+                    # A Javascript asset
+                    hd.Plugin.js_link("foo.stuff")
+                ]
+            ```
+
+            """
+        )
+
         p.heading("## Registering a Plugin in Javascript")
 
         docs_markdown(
