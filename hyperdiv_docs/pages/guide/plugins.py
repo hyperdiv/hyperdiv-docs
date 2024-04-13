@@ -19,7 +19,7 @@ def plugins():
 
             Plugins work like built-in Hyperdiv components. They can
             define props, and when the props are updated by the Python
-            app, the updates are sent the browser. And when the
+            app, the updates are sent to the browser. And when the
             browser updates props, they are automatically updated on
             the Python side.
 
@@ -44,9 +44,10 @@ def plugins():
                static assets, so Hyperdiv can load them in the
                browser.
 
-            2. One of the provided assets is a special piece of
-               Javascript that uses the Hyperdiv Javascript API to
-               register a plugin with the Hyperdiv frontend.
+            2. The plugin's assets. One of the provided assets is a
+               special piece of Javascript that uses the Hyperdiv
+               Javascript API to register a plugin with the Hyperdiv
+               frontend.
 
             """
         )
