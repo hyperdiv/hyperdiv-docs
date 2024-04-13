@@ -1,6 +1,8 @@
 import re
 from textwrap import dedent as dedent_text
 import hyperdiv as hd
+from .demos.counter_plugin import counter, boxy_counter
+from .demos.leaflet_plugin import leaflet
 
 
 def parse_doc(doc):
