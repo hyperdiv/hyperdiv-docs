@@ -4,10 +4,10 @@ from ...page import page
 from ...code_examples import docs_markdown
 
 
-@router.route("/reference/plugins")
+@router.route("/guide/plugins")
 def plugins():
     with page() as p:
-        p.title("# Plugins")
+        p.title("# Building Custom Components")
 
         docs_markdown(
             """

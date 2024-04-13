@@ -16,6 +16,7 @@ from .pages.guide.using_the_app_template import using_the_app_template
 from .pages.guide.static_assets import static_assets
 from .pages.guide.deploying import deploying
 from .pages.guide.matplotlib_charts import matplotlib_charts
+from .pages.guide.plugins import plugins
 
 from .pages.reference.components import components
 from .pages.reference.env_variables import env_variables
@@ -23,7 +24,6 @@ from .pages.reference.design_tokens import design_tokens
 from .pages.reference.prop_types import prop_types
 from .pages.reference.icons import icons
 from .pages.reference.cli import cli
-from .pages.reference.plugins import plugins
 
 menu = {
     "Introduction": {
@@ -45,6 +45,7 @@ menu = {
         "Using The App Template": {"href": using_the_app_template.path},
         "Matplotlib Charts": {"href": matplotlib_charts.path},
         "Static Assets": {"href": static_assets.path},
+        "Building Custom Components": {"href": plugins.path},
         "Deploying Hyperdiv": {"href": deploying.path},
     },
     "Reference": {
@@ -52,7 +53,6 @@ menu = {
         "Design Tokens": {"href": design_tokens.path},
         "Prop Types": {"href": prop_types.path},
         "Icons": {"href": icons.path},
-        "Plugins": {"href": plugins.path},
         "Environment Variables": {"href": env_variables.path},
         "The Hyperdiv CLI": {"href": cli.path},
     },
