@@ -14,13 +14,24 @@ def plugins():
 
             Hyperdiv provides a @component(Plugin) base class that can
             be subclassed to create custom components with custom
-            Javascript, CSS, and other assets, such as images.
+            Javascript, CSS, and other assets, such as images, text
+            files, etc.
 
             Plugins work like built-in Hyperdiv components. They can
             define props, and when the props are updated by the Python
             app, the updates are sent the browser. And when the
             browser updates props, they are automatically updated on
             the Python side.
+
+            Plugin instances are wrapped in [Web
+            Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components). As
+            such, plugin CSS is naturally isolated to the plugin, and
+            does not interfere with other CSS in the app. However,
+            plugin Javascript assets are *not isolated*. They are
+            inserted in the global `<head>` tag of the Hyperdiv
+            app. As such, plugin Javascript assets should be careful
+            to not pollute the global scope or modify other objects in
+            the global scope.
 
             A plugin can be instantiated multiple times in the same
             app, and each plugin instance has its own independent
@@ -45,7 +56,7 @@ def plugins():
         docs_markdown(
             """
 
-            Let's build a basic counter plugin that renders a count
+            We will build a basic counter plugin that renders a count
             and a button that increments the count by 1 when
             clicked. The plugin stores the count in a `count` prop
             that can be read and written in Python.
@@ -92,7 +103,7 @@ def plugins():
         docs_markdown(
             """
 
-            If the plugin provides asset files, it must define the
+            If the plugin provides local asset files, it must define the
             class variable `_assets_root`. This is the root directory
             where the plugin's assets are stored. In the code above,
             `os.path.join(os.path.dirname(__file__), "assets")` means
@@ -159,7 +170,7 @@ def plugins():
 
             This plugin will load Leaflet's CSS and Javascript bundles
             remotely from `unpkg.com`, and then provide the plugin
-            registration in the local asset `leaflet.js`.
+            registration in the local asset `leaflet-plugin.js`.
 
             More about this Leaflet plugin [below](#a-leaflet-plugin).
 
@@ -218,9 +229,16 @@ def plugins():
             window.hyperdiv.registerPlugin(pluginName, registrationFunction);
             ```
 
-            The `pluginName` is the name of the Python class that
-            defines the plugin. In our counter example, the plugin
-            name would be `"counter"`.
+            By default, the `pluginName` is the name of the Python
+            class that defines the plugin. In our counter example, the
+            plugin name would be `"counter"`. A plugin can provide an
+            explicit name by setting the `_name` class variable:
+
+            ```py-nodemo
+            class my_counter(hd.Plugin):
+                _name = "counter"
+                ...
+            ```
 
             `registrationFunction` is a function that takes a single
             parameter, a plugin context object, and sets up the plugin
@@ -234,9 +252,9 @@ def plugins():
         docs_markdown(
             """
 
-            When you instantiate a plugin in Python, Hyperdiv will
-            invoke the registration function and pass it an object
-            with the following attributes and methods:
+            When you instantiate a plugin in Python, the Hyperdiv
+            frontend will invoke the registration function and pass it
+            an object with the following attributes and methods:
 
             **Attributes:**
 
@@ -300,7 +318,7 @@ def plugins():
               });
 
               // Handle incoming prop updates from Python. We ignore
-              // `propValue` because there is only one prop, "count".
+              // `propName` because there is only one prop, "count".
               ctx.onPropUpdate((propName, propValue) => {
                 updateCount(propValue);
               });
@@ -351,18 +369,13 @@ def plugins():
 
             Plugin layout can be controlled with box props by
             inheriting from @component(Boxy) and adding `box` as a
-            class:
+            class. In this example, we create another plugin,
+            `boxy_counter`, that extends the existing `counter` plugin
+            with boxy props.
 
             ```py-nodemo
-            import os
-            import hyperdiv as hd
-
-            class boxy_counter(hd.Plugin, hd.Boxy):
+            class boxy_counter(counter, hd.Boxy):
                 _classes = ["box"]
-                _assets_root = os.path.join(os.path.dirname(__file__), "assets")
-                _assets = ["*"]
-
-                count = hd.Prop(hd.Int, 0)
             ```
 
             We can then control layout:
