@@ -65,7 +65,15 @@ def code_example(code, code_to_execute=None):
                         state.error = None
                 else:
                     try:
-                        exec(dedent_text(code_to_execute), globals(), globals())
+                        exec(
+                            dedent_text(code_to_execute),
+                            globals(),
+                            dict(
+                                counter=counter,
+                                boxy_counter=boxy_counter,
+                                leaflet=leaflet,
+                            ),
+                        )
                     except Exception as e:
                         state.error = str(e)
 
