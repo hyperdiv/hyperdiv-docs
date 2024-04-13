@@ -2,7 +2,7 @@ from importlib.metadata import version
 import hyperdiv as hd
 from .router import router
 from .menu import menu
-from .app_template_demo import main as demo_main
+from .demos.app_template_demo import main as demo_main
 
 
 def render_title(slot=None):
