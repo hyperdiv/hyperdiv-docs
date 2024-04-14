@@ -366,48 +366,6 @@ def plugins():
             """
         )
 
-        p.heading("## Boxy Plugins")
-
-        docs_markdown(
-            """
-
-            Plugin layout can be controlled with box props by
-            inheriting from @component(Boxy) and adding `box` as a
-            class. In this example, we create another plugin,
-            `boxy_counter`, that extends the existing `counter` plugin
-            with boxy props.
-
-            ```py-nodemo
-            class boxy_counter(counter, hd.Boxy):
-                _classes = ["box"]
-            ```
-
-            We can then control layout:
-
-            ```py
-            boxy_counter(
-                direction="horizontal",
-                align="center",
-                justify="center",
-                gap=1,
-                padding=1,
-                border="1px solid neutral-100",
-                background_color="neutral-50",
-                border_radius="large"
-            )
-            ```
-
-            Note that @component(Boxy) plugins make sense only when
-            multiple children are added directly to the shadow root
-            (the `ctx.domElement` passed to the registration
-            function). If the plugin has an internal root container,
-            then Boxy layout props will have no effect, since the
-            plugin only has one child. In that case the layout can be
-            controlled with custom CSS.
-
-            """
-        )
-
         p.heading("## Using Shoelace In Plugins")
 
         docs_markdown(
