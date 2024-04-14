@@ -275,7 +275,10 @@ def plugins():
             **Methods:**
 
             * `onPropUpdate(callback)` - Registers a prop update
-              handler, to handle incoming prop updates from Python.
+              handler, to handle incoming prop updates from
+              Python. The callback will be called with the arguments
+              `(propName, propValue)`, with the name and value of the
+              prop that was updated.
 
             * `updateProp(propName, propValue)` - Sends a prop update
               to Python.
@@ -397,10 +400,10 @@ def plugins():
             Note that @component(Boxy) plugins make sense only when
             multiple children are added directly to the shadow root
             (the `ctx.domElement` passed to the registration
-            function). If the plugin has a root container, then
-            obviously Boxy layout props will have no effect on the
-            children within that container. In that case the layout
-            can be controlled with custom CSS.
+            function). If the plugin has an internal root container,
+            then Boxy layout props will have no effect, since the
+            plugin only has one child. In that case the layout can be
+            controlled with custom CSS.
 
             """
         )
