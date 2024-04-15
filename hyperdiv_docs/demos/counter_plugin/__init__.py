@@ -1,1 +1,1 @@
-from .counter import counter, boxy_counter
+from .counter import counter
