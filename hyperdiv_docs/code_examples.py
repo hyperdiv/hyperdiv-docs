@@ -1,6 +1,8 @@
 import re
 from textwrap import dedent as dedent_text
 import hyperdiv as hd
+from .demos.counter_plugin import counter, boxy_counter
+from .demos.leaflet_plugin import leaflet
 
 
 def parse_doc(doc):
@@ -63,7 +65,15 @@ def code_example(code, code_to_execute=None):
                         state.error = None
                 else:
                     try:
-                        exec(dedent_text(code_to_execute), globals(), globals())
+                        exec(
+                            dedent_text(code_to_execute),
+                            globals(),
+                            dict(
+                                counter=counter,
+                                boxy_counter=boxy_counter,
+                                leaflet=leaflet,
+                            ),
+                        )
                     except Exception as e:
                         state.error = str(e)
 

@@ -16,6 +16,7 @@ from .pages.guide.using_the_app_template import using_the_app_template
 from .pages.guide.static_assets import static_assets
 from .pages.guide.deploying import deploying
 from .pages.guide.matplotlib_charts import matplotlib_charts
+from .pages.guide.plugins import plugins
 
 from .pages.reference.components import components
 from .pages.reference.env_variables import env_variables
@@ -44,6 +45,7 @@ menu = {
         "Using The App Template": {"href": using_the_app_template.path},
         "Matplotlib Charts": {"href": matplotlib_charts.path},
         "Static Assets": {"href": static_assets.path},
+        "Building Custom Components": {"href": plugins.path},
         "Deploying Hyperdiv": {"href": deploying.path},
     },
     "Reference": {
