@@ -16,7 +16,12 @@ from .pages.guide.using_the_app_template import using_the_app_template
 from .pages.guide.static_assets import static_assets
 from .pages.guide.deploying import deploying
 from .pages.guide.matplotlib_charts import matplotlib_charts
-from .pages.guide.plugins import plugins
+
+from .pages.extending_hyperdiv.overview import overview as extending_overview
+from .pages.extending_hyperdiv.plugins import plugins
+from .pages.extending_hyperdiv.custom_assets import custom_assets
+from .pages.extending_hyperdiv.built_in_components import built_in_components
+from .pages.extending_hyperdiv.new_components import new_components
 
 from .pages.reference.components import components
 from .pages.reference.env_variables import env_variables
@@ -45,8 +50,14 @@ menu = {
         "Using The App Template": {"href": using_the_app_template.path},
         "Matplotlib Charts": {"href": matplotlib_charts.path},
         "Static Assets": {"href": static_assets.path},
-        "Building Custom Components": {"href": plugins.path},
         "Deploying Hyperdiv": {"href": deploying.path},
+    },
+    "Extending Hyperdiv": {
+        "Overview": {"href": extending_overview.path},
+        "Building Plugins": {"href": plugins.path},
+        "Loading Custom Assets": {"href": custom_assets.path},
+        "Extending Built-In Components": {"href": built_in_components.path},
+        "Creating New Components": {"href": new_components.path},
     },
     "Reference": {
         "Hyperdiv API": {"href": components.path},
