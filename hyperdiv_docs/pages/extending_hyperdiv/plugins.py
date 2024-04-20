@@ -96,6 +96,16 @@ def plugins():
             registers the plugin with the Hyperdiv Javascript
             frontend. `counter.css` styles the plugin.
 
+            Query and hash args can be passed to plugin assets:
+
+            ```py-nodemo
+            class counter(hd.Plugin):
+                _assets_root = os.path.join(os.path.dirname(__file__), "assets")
+                _assets = ["counter.css?x=1", "counter.js?a=1&b=2"]
+
+                count = hd.Prop(hd.Int, 0)
+            ```
+
             """
         )
 
@@ -148,6 +158,16 @@ def plugins():
             ```
             """
         )
+
+        with hd.alert(variant="warning", opened=True):
+            hd.markdown(
+                """
+                Note that when using glob syntax, query args cannot be
+                meaningfully passed to local assets. `"js/**/*.js?x=1"` is
+                nonsensical and will cause Hyperdiv to fail to correctly
+                expand the glob.
+                """
+            )
 
         p.heading("### Remote Assets")
 
