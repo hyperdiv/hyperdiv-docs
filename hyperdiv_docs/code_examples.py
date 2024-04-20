@@ -60,7 +60,7 @@ def code_example(code, code_to_execute=None):
         with hd.box(grow=1, basis=0, min_width=18):
             with hd.box(padding=1, gap=1):
                 if state.error:
-                    hd.text(f"Error: {state.error}", font_color="red")
+                    hd.markdown(f"`Error: {state.error}`", font_color="red")
                     if hd.button("Reset", size="small").clicked:
                         state.error = None
                 else:
