@@ -22,9 +22,10 @@ def overview():
               building new, self-contained, reusable components with
               custom Javascript, CSS, and other assets.
 
-            * [Loading Custom Assets](/extending-hyperdiv/assets) -
-              Loading custom Javascript and CSS assets into the
-              top-level application.
+            * [Loading Custom
+              Assets](/extending-hyperdiv/custom-assets) - Loading
+              custom Javascript and CSS assets into the top-level
+              application.
 
             * [Extending Built-In
               Components](/extending-hyperdiv/built-in-components) -
