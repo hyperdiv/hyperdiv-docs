@@ -25,7 +25,7 @@ from hyperdiv.slot import Slot
 from .types import get_types
 from .top_level_docs import get_top_level_docs
 from .class_attribute_docs import get_class_attribute_docs
-from ..utils import render_value, render_value_list
+from ..utils import render_value_list
 
 
 class Extractor:
@@ -170,7 +170,6 @@ class Extractor:
         can be either a Hyperdiv exported function, like
         `hd.global_state` or `hd.cache`, or a component class.
         """
-
         # If already extracted, do nothing.
         if comp.__name__ in self.output["components"]:
             return
@@ -204,9 +203,11 @@ class Extractor:
         is_mixin = not issubclass(comp, Component)
 
         # Collect info for all the class attributes
-        for name, attr in vars(comp).items():
+        for name in vars(comp).keys():
             if name.startswith("_"):
                 continue
+
+            attr = getattr(comp, name)
 
             # The class attribute is a prop
             if isinstance(attr, Prop):
