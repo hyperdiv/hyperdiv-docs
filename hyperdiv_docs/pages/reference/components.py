@@ -155,6 +155,7 @@ non_ui_components = {
         "location",
         "clipboard",
         "local_storage",
+        "cookies",
     ],
     "Plugins": ["Plugin"],
 }
@@ -240,6 +241,10 @@ ui_components = {
     "Animation": ["animation", "keyframe"],
 }
 
+utilities = {
+    "Color Utilities": ["color_mix", "lighten", "darken"],
+}
+
 
 def render_menu(menu):
     for section_name, component_names in menu.items():
@@ -303,3 +308,12 @@ def components():
                 )
 
                 render_menu(ui_components)
+
+            with hd.box(gap=1):
+                hd.markdown(
+                    """
+                    ## Utility Functions
+                    """
+                )
+
+                render_menu(utilities)
