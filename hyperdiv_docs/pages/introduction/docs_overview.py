@@ -30,6 +30,19 @@ def docs_overview():
             """
         )
 
+        hd.markdown("### Extending Hyperdiv", font_color="blue")
+
+        hd.markdown(
+            """
+
+            The [Extending Hyperdiv](/extending-hyperdiv) section
+            dives into various ways to customize and extend Hyperdiv
+            components, and build new components with custom
+            Javascript, HTML, and CSS.
+
+            """
+        )
+
         hd.markdown("### Reference", font_color="blue")
 
         hd.markdown(
